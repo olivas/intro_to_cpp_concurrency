@@ -30,8 +30,8 @@ int main(){
   threads[bthread.get_id()] = std::move(bthread);
 
   for(auto& id_thread: threads)
-    id_thread.second.detach();
-    //id_thread.second.join();
+    if(id_thread.second.joinable())
+      id_thread.second.detach();
 }
 
 
